@@ -1,0 +1,19 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# VS Code
+.vscode/
+
+# Spark
+spark-warehouse/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
