@@ -63,11 +63,27 @@ parsed_df = (
 final_df = parsed_df.select("order.*")
 
 query = (
+
     final_df.writeStream
-           .outputMode("append")
-           .format("console")
-           .option("truncate", False)
-           .start()
+
+    .outputMode("overwrite")
+
+    .format("parquet")
+
+    .option(
+        "path",
+        "../bronze"
+    )
+
+    .option(
+        "checkpointLocation",
+        "../checkpoint/bronze_orders"
+    )
+
+    .start()
+
 )
+
+query.awaitTermination()
 
 query.awaitTermination()

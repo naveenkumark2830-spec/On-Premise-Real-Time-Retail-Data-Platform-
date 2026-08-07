@@ -24,7 +24,7 @@ def main():
 
         print(f"Sent Order : {event['order_id']}")
 
-        time.sleep(2)
+        time.sleep(0.01)
 
 
 if __name__ == "__main__":
