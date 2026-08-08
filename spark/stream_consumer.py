@@ -2,7 +2,13 @@ from pyspark.sql import SparkSession
 
 from pyspark.sql.functions import (
     col,
-    from_json
+    from_json,
+    to_timestamp,
+)
+from pyspark.sql.functions import (
+    to_date,
+    hour,
+    col
 )
 
 from pyspark.sql.types import (
@@ -62,28 +68,57 @@ parsed_df = (
 
 final_df = parsed_df.select("order.*")
 
+bronze_df = (
+
+    final_df
+
+    .withColumn(
+        "event_timestamp",
+        to_timestamp(col("event_timestamp"))
+    )
+
+    .withColumn(
+        "event_date",
+        to_date(col("event_timestamp"))
+    )
+
+    .withColumn(
+        "event_hour",
+        hour(col("event_timestamp"))
+    )
+
+)
+
+
 query = (
 
-    final_df.writeStream
+    bronze_df
 
-    .outputMode("overwrite")
+    .writeStream
 
     .format("parquet")
 
+    .outputMode("append")
+
     .option(
         "path",
-        "../bronze"
+        "/home/naveen/PowerBI/bronze"
     )
 
     .option(
         "checkpointLocation",
-        "../checkpoint/bronze_orders"
+        "/home/naveen/PowerBI/checkpoint/bronze_orders"
     )
+
+    .partitionBy(
+        "event_date",
+        "event_hour"
+    )
+
+    .trigger(processingTime="5 seconds")
 
     .start()
 
 )
-
-query.awaitTermination()
 
 query.awaitTermination()
