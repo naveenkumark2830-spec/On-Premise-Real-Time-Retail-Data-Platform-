@@ -20,6 +20,7 @@
 - [Overview](#-overview)
 - [Architecture](#-architecture)
 - [Tech Stack](#-tech-stack)
+ source /home/naveen/PowerBI/.venv/bin/activate
 - [Data Flow](#-data-flow)
 - [Medallion Architecture](#-medallion-architecture)
 - [Incremental Processing](#-incremental-processing)
@@ -45,6 +46,7 @@ This project simulates a **continuous stream of e-commerce order events** and pr
 <div align="center">
   <img src="./architecture-diagram.png" alt="Architecture Diagram" width="100%">
 </div>
+
 ---
 
 ## Tech Stack
@@ -282,6 +284,6 @@ python3 spark/silver_to_gold.py
 
 <div align="center">
 
-** If you found this project interesting, consider starring the repo!**
+**⭐If you found this project interesting, consider starring the repo!**
 
 </div>
