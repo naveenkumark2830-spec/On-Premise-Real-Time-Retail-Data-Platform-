@@ -40,25 +40,11 @@ This project simulates a **continuous stream of e-commerce order events** and pr
 >  Think of it as a mini version of what Uber, Netflix, or Amazon run internally — just scoped down to run on your own machine.
 
 ---
-
 ## Architecture
 
-```mermaid
-flowchart TD
-    A[Python Order Producer] -->|JSON events| B[📨 Kafka: orders topic]
-    B --> C[ Spark Structured Streaming<br/>Parsing + Validation]
-    C --> D[( Bronze Delta<br/>Raw + Partitioned)]
-    D --> E[( Silver Delta<br/>Clean + Validated)]
-    E --> F[( Gold Delta<br/>Data Marts + KPIs)]
-
-    style A fill:#3776AB,color:#fff
-    style B fill:#231F20,color:#fff
-    style C fill:#E25A1C,color:#fff
-    style D fill:#CD7F32,color:#fff
-    style E fill:#B0B0B0,color:#000
-    style F fill:#FFD700,color:#000
-```
-
+<div align="center">
+  <img src="./architecture-diagram.png" alt="Architecture Diagram" width="100%">
+</div>
 ---
 
 ## Tech Stack
