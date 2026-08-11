@@ -15,7 +15,7 @@
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents
 
 - [Overview](#-overview)
 - [Architecture](#-architecture)
@@ -31,25 +31,25 @@
 
 ---
 
-## 🔎 Overview
+##  Overview
 
 This project simulates a **continuous stream of e-commerce order events** and processes them through a real, on-premise streaming architecture — the same patterns used in production retail data platforms, just running locally with Docker.
 
 **Apache Kafka** streams live order events → **Spark Structured Streaming** ingests and validates them in real time → **Delta Lake** organizes the data into a clean **Bronze → Silver → Gold Medallion architecture**, producing analytics-ready data marts.
 
-> 💡 Think of it as a mini version of what Uber, Netflix, or Amazon run internally — just scoped down to run on your own machine.
+>  Think of it as a mini version of what Uber, Netflix, or Amazon run internally — just scoped down to run on your own machine.
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
 ```mermaid
 flowchart TD
-    A[🐍 Python Order Producer] -->|JSON events| B[📨 Kafka: orders topic]
-    B --> C[⚡ Spark Structured Streaming<br/>Parsing + Validation]
-    C --> D[(🥉 Bronze Delta<br/>Raw + Partitioned)]
-    D --> E[(🥈 Silver Delta<br/>Clean + Validated)]
-    E --> F[(🥇 Gold Delta<br/>Data Marts + KPIs)]
+    A[Python Order Producer] -->|JSON events| B[📨 Kafka: orders topic]
+    B --> C[ Spark Structured Streaming<br/>Parsing + Validation]
+    C --> D[( Bronze Delta<br/>Raw + Partitioned)]
+    D --> E[( Silver Delta<br/>Clean + Validated)]
+    E --> F[( Gold Delta<br/>Data Marts + KPIs)]
 
     style A fill:#3776AB,color:#fff
     style B fill:#231F20,color:#fff
@@ -61,22 +61,22 @@ flowchart TD
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 | Category            | Technologies                 |
 |----------------------|-------------------------------|
-| 🐍 Language          | Python                        |
-| 📨 Streaming         | Apache Kafka                  |
-| ⚡ Processing         | Apache Spark, PySpark         |
-| 🔄 Stream Processing | Spark Structured Streaming    |
-| 🏞 Data Lake          | Delta Lake, Parquet           |
-| 🐳 Infrastructure     | Docker                        |
-| 🖥 OS                 | Linux / Ubuntu / WSL          |
-| 🔧 Version Control    | Git / GitHub                  |
+|  Language          | Python                        |
+|  Streaming         | Apache Kafka                  |
+|  Processing         | Apache Spark, PySpark         |
+|  Stream Processing | Spark Structured Streaming    |
+|  Data Lake          | Delta Lake, Parquet           |
+|  Infrastructure     | Docker                        |
+|  OS                 | Linux / Ubuntu / WSL          |
+|  Version Control    | Git / GitHub                  |
 
 ---
 
-## 🔄 Data Flow
+##  Data Flow
 
 <details>
 <summary><b>1. Event Generation</b> — click to expand</summary>
@@ -127,13 +127,13 @@ Spark checkpointing maintains streaming progress and supports reliable increment
 
 Bronze data is transformed into a clean, trustworthy Silver layer:
 
-- ✅ Timestamp conversion
-- ✅ Duplicate order removal
-- ✅ Invalid price/payment filtering
-- ✅ Null validation
-- ✅ City whitespace cleanup & state standardization
-- ✅ Event date/hour derivation
-- ✅ Processing timestamp generation
+-  Timestamp conversion
+-  Duplicate order removal
+-  Invalid price/payment filtering
+-  Null validation
+-  City whitespace cleanup & state standardization
+-  Event date/hour derivation
+-  Processing timestamp generation
 
 Incremental processing avoids reprocessing previously handled Bronze data.
 
@@ -155,13 +155,13 @@ These support analysis of revenue, order volume, AOV, hourly trends, product per
 
 ---
 
-## 🥇 Medallion Architecture
+##  Medallion Architecture
 
 ```mermaid
 flowchart LR
-    RAW[📥 Raw Events] --> BRONZE[(🥉 Bronze<br/>Raw · Partitioned)]
-    BRONZE --> SILVER[(🥈 Silver<br/>Cleaned · Deduplicated)]
-    SILVER --> GOLD[(🥇 Gold<br/>Data Marts · KPIs)]
+    RAW[ Raw Events] --> BRONZE[( Bronze<br/>Raw · Partitioned)]
+    BRONZE --> SILVER[(Silver<br/>Cleaned · Deduplicated)]
+    SILVER --> GOLD[(Gold<br/>Data Marts · KPIs)]
 
     style RAW fill:#eee,color:#000
     style BRONZE fill:#CD7F32,color:#fff
@@ -171,7 +171,7 @@ flowchart LR
 
 ---
 
-## ♻️ Incremental Processing
+## Incremental Processing
 
 | Mechanism | What it does |
 |---|---|
@@ -182,7 +182,7 @@ flowchart LR
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 PowerBI/
@@ -216,7 +216,7 @@ PowerBI/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ```bash
 # 1. Start Kafka (via Docker)
@@ -239,7 +239,7 @@ python3 spark/silver_to_gold.py
 
 ---
 
-## 🎯 Key Concepts Demonstrated
+##  Key Concepts Demonstrated
 
 <table>
 <tr>
@@ -266,19 +266,19 @@ python3 spark/silver_to_gold.py
 
 ---
 
-## 📊 Analytics Enabled
+##  Analytics Enabled
 
 | Domain | Metrics |
 |---|---|
-| 💰 **Sales** | Total revenue, total orders, average order value, hourly trends |
-| 📦 **Products** | Top-performing products, product-level sales |
-| 🌍 **Geography** | State-level sales, geographic performance |
-| 💳 **Payments** | Payment method distribution, payment-based sales |
-| ⚙️ **Operations** | Order status, order volume, operational KPIs |
+|  **Sales** | Total revenue, total orders, average order value, hourly trends |
+|  **Products** | Top-performing products, product-level sales |
+|  **Geography** | State-level sales, geographic performance |
+|  **Payments** | Payment method distribution, payment-based sales |
+|  **Operations** | Order status, order volume, operational KPIs |
 
 ---
 
-## 🗺 Roadmap
+## Roadmap
 
 - [ ] Apache Airflow orchestration
 - [ ] AWS S3 data lake
@@ -296,6 +296,6 @@ python3 spark/silver_to_gold.py
 
 <div align="center">
 
-**⭐ If you found this project interesting, consider starring the repo!**
+** If you found this project interesting, consider starring the repo!**
 
 </div>
